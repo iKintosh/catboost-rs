@@ -70,7 +70,7 @@ impl Model {
             .map(|x| x.as_ptr())
             .collect::<Vec<_>>();
 
-        let mut prediction = vec![0.0; float_features.len()];
+        let mut prediction = vec![0.0; float_features.len() * self.get_dimensions_count()];
         CatBoostError::check_return_value(unsafe {
             catboost_sys::CalcModelPredictionWithHashedCatFeatures(
                 self.handle,
